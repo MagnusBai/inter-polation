@@ -78,3 +78,25 @@ mroc_point* getLinerInterpolationWithPointsList(\
   *num_points_array = num_gathered_points;
   return p_gathered_points;
 }
+
+mroc_point* samplePointsByCertainInterval(\
+    mroc_point* const IN p_point, \
+    const int IN num_points_in, \
+    const int IN sample_interval, \
+    int* OUT p_num_points_out ) {
+  CHECKLT(sample_interval, num_points_in);
+  const int num_out = num_points_in/sample_interval+1;
+  // stray pointer
+  mroc_point* out_point_list = (mroc_point*)malloc(num_out*sizeof(mroc_point));
+  int i=0;
+
+  for(i=0; i<num_out; ++i) {
+    memcpy(&(out_point_list[i]), \
+        &(p_point[i*sample_interval]),
+        1*sizeof(mroc_point));
+  }
+
+  // 
+  *p_num_points_out = num_out;
+  return out_point_list;
+}

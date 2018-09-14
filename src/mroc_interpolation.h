@@ -19,6 +19,12 @@ mroc_point* getLinerInterpolationWithPointsList(\
     const int IN num_preset_points, \
     int* OUT num_points_array);
 
+mroc_point* samplePointsByCertainInterval(\
+	mroc_point* const IN p_point, \
+	const int IN num_points_in, \
+	const int IN sample_interval, \
+	int* OUT p_num_points_out );
+
 #ifdef __cplusplus
 }   // extern "C"
 #endif
